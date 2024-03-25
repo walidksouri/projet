@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css">
+    <title>citations</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Playfair:ital,opsz,wght@0,5..1200,300..900;1,5..1200,300..900&family=Quicksand:wght@300..700&family=Roboto:ital,wght@0,100;0,300;0,400;0,900;1,100&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <div id="google-translate_element"></div>
+        <video autoplay  loop muted plays-inline class="background-clip">
+            <source src="images/video-sea.mp4" type="video/mp4">
+
+        </video>
+        <div class="quote-box">
+            <h2>Quote of the day</h2>
+            <blockquote id ="quote"></blockquote>
+            <span id="author"></span>
+            <div>
+                <button onclick="getquote(api_url,counter)">new quote</button>
+            </div>
+    
+        </div>
+
+    </div>
+    <script>
+        const quote=document.getElementById("quote");
+        const author=document.getElementById("author");
+        const api_url="https://type.fit/api/quotes";
+        let counter;
+        console.log(counter);
+        async function getquote(url,counter){
+            counter=Math.floor(Math.random()*16)
+            const response=await fetch(url);
+            var data =await response.json();
+            console.log(data);
+            quote.innerHTML=data[counter].text;
+            author.innerHTML=data[counter].author;
+        }
+
+        getquote(api_url,counter);
+
+    </script>
+    <script type="text/javascript">
+        function googleTranslateElementInit() {
+            new google.translate.TranslateElement(
+                {pageLanguage: 'en'},
+                'google-translate_element'
+            );
+        } 
+    </script>
+    <script type="text/javascript" src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+</body>
+</html>
